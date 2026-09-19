@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Comment ça marche — Sécurité">
+  <div class="mx-auto max-w-3xl px-4 py-8 sm:py-10 space-y-8">
+    <div>
+      <h1 class="text-2xl sm:text-3xl font-bold m-0">Comment ça marche</h1>
+      <p class="text-muted mt-2 mb-0">
+        Flux simple, pensé pour San-Pédro, avec des garde-fous anti-arnaque dès le premier écran.
+      </p>
+    </div>
+
+    <ol class="space-y-4 list-none p-0 m-0 counter-reset">
+      {[
+        {
+          t: '1. Signaler',
+          d: 'Vous déclarez une perte ou une trouvaille : type, zone large, date, masque ≤ 4 caractères, indice challenge. Pas de photo, pas de n° complet.',
+        },
+        {
+          t: '2. Consulter',
+          d: 'Les listes « Perdus » et « Trouvés » n’affichent que des infos partielles. Le contact WhatsApp n’apparaît jamais en clair sur la page.',
+        },
+        {
+          t: '3. Demander contact',
+          d: 'Modal obligatoire : « on ne demande jamais d’argent ». Puis checklist (pas de paiement, vérification en personne, pas d’escrow). Ensuite seulement : deep link WhatsApp prérempli vers un numéro démo.',
+        },
+        {
+          t: '4. Vérifier & remettre',
+          d: 'Rencontre en lieu public. Utilisez l’indice challenge. Au besoin, passez par le commissariat ou la mairie. Zéro argent échangé via la plateforme.',
+        },
+        {
+          t: '5. Signaler un abus',
+          d: 'Bouton « Signaler » sur chaque annonce. Toute demande d’argent = arnaque.',
+        },
+      ].map((s) => (
+        <li class="rounded-xl border border-border bg-surface p-5">
+          <h2 class="text-base font-semibold m-0 text-cta">{s.t}</h2>
+          <p class="text-sm text-muted mt-2 mb-0">{s.d}</p>
+        </li>
+      ))}
+    </ol>
+
+    <section class="rounded-xl border border-alert/30 bg-red-50 p-5 space-y-2">
+      <h2 class="text-base font-semibold text-alert m-0">Règles anti-arnaque (non négociables)</h2>
+      <ul class="text-sm text-ink m-0 pl-5 space-y-1 list-disc">
+        <li>Aucun paiement, Mobile Money, « frais de garde » ou escrow</li>
+        <li>Pas de photo / scan de pièce d’identité sur le site</li>
+        <li>Pas de numéro complet ni d’identité complète en public</li>
+        <li>WhatsApp uniquement via deep link après checklist — jamais listé public</li>
+        <li>Indice secret (challenge) pour vérifier sans tout révéler</li>
+      </ul>
+    </section>
+
+    <p class="text-sm text-muted">
+      Ce site est une <strong>démonstration</strong> : toutes les annonces sont fictives.
+    </p>
+  </div>
+</Layout>
