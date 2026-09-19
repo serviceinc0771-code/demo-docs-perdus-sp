@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import listings from '../data/listings.json';
+
+const perdus = listings.filter((l) => l.status === 'perdu').length;
+const trouves = listings.filter((l) => l.status === 'trouve').length;
+---
+
+<Layout title="Documents perdus San-Pédro — Accueil">
+  <section class="relative overflow-hidden border-b border-border">
+    <div class="absolute inset-0 bg-gradient-to-br from-sand via-bg to-bg" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-5xl px-4 py-12 sm:py-16">
+      <p class="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted mb-4">
+        <span class="h-1.5 w-1.5 rounded-full bg-success" aria-hidden="true"></span>
+        San-Pédro · Côte d’Ivoire · Service utile (démo)
+      </p>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink max-w-2xl m-0">
+        Retrouvez un document perdu à San-Pédro — sans payer personne
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-muted max-w-2xl m-0">
+        Signalez une perte ou une trouvaille. Les annonces n’affichent que le type, une zone large,
+        la date, le statut et un masque de 4 caractères. Aucune photo de pièce. Aucun paiement.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a
+          href="/signaler"
+          class="inline-flex items-center justify-center rounded-lg bg-cta px-5 py-3 text-sm font-semibold text-white no-underline hover:bg-cta-hover"
+        >
+          J’ai perdu
+        </a>
+        <a
+          href="/signaler?statut=trouve"
+          class="inline-flex items-center justify-center rounded-lg border border-cta bg-surface px-5 py-3 text-sm font-semibold text-cta no-underline hover:bg-sand"
+        >
+          J’ai trouvé
+        </a>
+      </div>
+      <p class="mt-4 text-sm text-alert font-medium m-0">
+        ⚠ On ne demande jamais d’argent pour un document. Signalez toute tentative d’arnaque.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 py-10">
+    <div class="grid sm:grid-cols-3 gap-4">
+      <a href="/perdus" class="rounded-xl border border-border bg-surface p-5 no-underline text-ink hover:border-sand-deep transition-colors">
+        <p class="text-2xl font-bold text-cta m-0">{perdus}</p>
+        <p class="text-sm font-medium m-0 mt-1">Annonces « perdus »</p>
+        <p class="text-xs text-muted m-0 mt-1">Chercher une perte déclarée</p>
+      </a>
+      <a href="/trouves" class="rounded-xl border border-border bg-surface p-5 no-underline text-ink hover:border-sand-deep transition-colors">
+        <p class="text-2xl font-bold text-success m-0">{trouves}</p>
+        <p class="text-sm font-medium m-0 mt-1">Annonces « trouvés »</p>
+        <p class="text-xs text-muted m-0 mt-1">Voir ce qui a été retrouvé</p>
+      </a>
+      <a href="/comment-ca-marche" class="rounded-xl border border-border bg-surface p-5 no-underline text-ink hover:border-sand-deep transition-colors">
+        <p class="text-2xl font-bold text-ink m-0">Sécurité</p>
+        <p class="text-sm font-medium m-0 mt-1">Comment ça marche</p>
+        <p class="text-xs text-muted m-0 mt-1">Règles anti-arnaque</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 pb-14">
+    <h2 class="text-xl font-semibold m-0 mb-4">Ce que le public voit (et ne voit pas)</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div class="rounded-xl border border-success/25 bg-green-50 p-5">
+        <h3 class="text-sm font-semibold text-success m-0 mb-2">Affiché</h3>
+        <ul class="text-sm text-ink m-0 pl-5 space-y-1 list-disc">
+          <li>Type de document</li>
+          <li>Zone large (quartier / secteur)</li>
+          <li>Date</li>
+          <li>Statut (perdu / trouvé)</li>
+          <li>Masque ≤ 4 caractères (ex. …4821)</li>
+          <li>Indice challenge (vérification)</li>
+        </ul>
+      </div>
+      <div class="rounded-xl border border-alert/25 bg-red-50 p-5">
+        <h3 class="text-sm font-semibold text-alert m-0 mb-2">Jamais affiché</h3>
+        <ul class="text-sm text-ink m-0 pl-5 space-y-1 list-disc">
+          <li>Numéro complet (CNI, passeport…)</li>
+          <li>Photo ou scan de la pièce</li>
+          <li>Identité complète</li>
+          <li>Contact / WhatsApp en clair sur les listes</li>
+          <li>Tout module de paiement ou MoMo</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
